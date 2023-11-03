@@ -53,7 +53,7 @@ public class ChainGun : MonoBehaviour
 
 	[HideInInspector] public Vector2 grapplePoint;
 	[HideInInspector] public Vector2 grappleDistanceVector;
-	private bool isLaunched;
+	public bool isLaunched;
 	private bool isSetGrapple;
 	private Vector2 lastFingerPosition;
 	
@@ -97,13 +97,38 @@ public class ChainGun : MonoBehaviour
 
 	public void SimulateGrappleHook()
 	{
+		isSimulating = true;
 		StartCoroutine(Simulate());
+	}
+	
+	public void DisableSimulate()
+	{
+		isSimulating = false;
+		StopAllCoroutines();
+		isLaunched = false;
+		m_rigidbody.velocity = Vector2.zero;
+		m_rigidbody.angularVelocity = 0;
+		transform.parent.parent.position = new Vector2(0, -4.16f);
 	}
 	
 	private IEnumerator Simulate()
 	{
-		
+		while (isSimulating)
+		{
+			lastFingerPosition = new Vector2(813f, 907f);
+			isSetGrapple = true;
+			isLaunched = true;
+			
+			yield return new WaitForSeconds(2);
+			isLaunched = false;
+			transform.parent.parent.position = new Vector2(0, -4.16f);
+			m_rigidbody.velocity = Vector2.zero;
+			m_rigidbody.angularVelocity = 0;
+			yield return new WaitForSeconds(0.5f);
+		}
 	}
+	
+	public bool isSimulating;
 
 	private void Update()
 	{

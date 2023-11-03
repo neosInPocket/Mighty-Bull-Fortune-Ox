@@ -7,22 +7,28 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
+	[SerializeField] private bool isPreSpawned = false;
 	[SerializeField] private SpriteRenderer spriteRenderer;
 	[SerializeField] private SpriteRenderer[] spikes;
 	[SerializeField] private float coinSpawnDelta;
 	[SerializeField] private CoinController rareCoin; 
 	[SerializeField] private CoinController simpleCoin; 
-	[SerializeField] private float coinSpawnChance; 
+	[SerializeField] private float coinSpawnChance;
 	public SpriteRenderer SpriteRenderer => spriteRenderer;
 	private bool isSpikesSpawned;
-	private Transform coinContainer;
+	private Vector2 coinSpawnPosition;
+	public Vector2 CoinSpawnPosition => coinSpawnPosition;
+	public bool HasSpikes => spikes[0].gameObject.activeSelf;
 	
 	private void Start()
 	{
-		coinContainer = GameObject.FindGameObjectWithTag("coinContainer").transform;
+		if (isPreSpawned)
+		{
+			SpawnSpikes();
+		}
 	}
 	
-	public void SetRandomPositionNSize(Vector2 platformXSizeBounds, Vector2 screenSize, float currentYSpawnPosition)
+	public void SetRandomPositionNSize(Vector2 platformXSizeBounds, Vector2 screenSize, float currentYSpawnPosition, Transform coinContainer)
 	{
 		float platformAspect = SpriteRenderer.size.x / SpriteRenderer.size.y;
 		float platformXSize = Random.Range(platformXSizeBounds.x, platformXSizeBounds.y);
@@ -46,7 +52,7 @@ public class PlatformController : MonoBehaviour
 		}
 		
 		SpawnSpikes();
-		SpawnCoin();
+		SpawnCoin(coinContainer);
 	}
 	
 	private void SpawnSpikes()
@@ -74,7 +80,7 @@ public class PlatformController : MonoBehaviour
 		}
 	}
 	
-	private void SpawnCoin()
+	private void SpawnCoin(Transform coinContainer)
 	{
 		var random = Random.Range(0, 1f);
 		if (random < coinSpawnChance)
@@ -102,6 +108,7 @@ public class PlatformController : MonoBehaviour
 			
 			float ySpawnPosition = transform.position.y + spriteRenderer.size.y / 2 + spikes[0].size.y / 2 + coinPrefab.SpriteRenderer.size.y / 2 + coinSpawnDelta;
 			var spawnPos = new Vector2(xSpawnPosition, ySpawnPosition);
+			coinSpawnPosition = spawnPos;
 			Instantiate(coinPrefab, spawnPos, Quaternion.identity, coinContainer);
 		}
 	}

@@ -23,7 +23,7 @@ public static class SaveSystem
 	{
 		get
 		{
-			 return PlayerPrefs.GetInt("maxLifesAmount", 0);
+			return PlayerPrefs.GetInt("maxLifesAmount", 1);
 		}
 		
 		set
@@ -59,8 +59,22 @@ public static class SaveSystem
 			{
 				m_tutorial = 0;
 			}
-			PlayerPrefs.SetInt("tutorial", m_tutorial);
+			PlayerPrefs.SetInt("tutor", m_tutorial);
 		}
 	}
 	private static int m_tutorial;
+	public static int level
+	{
+		get
+		{
+			 return PlayerPrefs.GetInt("level", 1);
+		}
+		
+		set
+		{
+			m_level = value;
+			PlayerPrefs.SetInt("level", m_level);
+		}
+	}
+	private static int m_level;
 }

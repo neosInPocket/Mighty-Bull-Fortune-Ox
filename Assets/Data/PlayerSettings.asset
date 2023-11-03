@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: PlayerSettings
   m_EditorClassIdentifier: 
   hookDistances:
-  - 3
   - 4.5
   - 6
   - 7.5
+  - 9
   hookSpeed:
   - 0
   - 0

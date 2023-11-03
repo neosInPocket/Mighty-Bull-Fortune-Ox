@@ -44,7 +44,7 @@ public class PlatformSpawner : MonoBehaviour
 			transform
 			);
 			
-		platform.SetRandomPositionNSize(platformXSizeBounds, screenSize, currentYSpawnPosition);
+		platform.SetRandomPositionNSize(platformXSizeBounds, screenSize, currentYSpawnPosition, transform);
 		currentYSpawnPosition = platform.transform.position.y + spawnDelta;
 		currentYSpawnTrigger += spawnDelta;
 	}
@@ -54,11 +54,6 @@ public class PlatformSpawner : MonoBehaviour
 		foreach (Transform child in transform)
 		{
 			Destroy(child.gameObject);
-		}
-		
-		foreach (Transform coin in coinContainer)
-		{
-			Destroy(coin.gameObject);
 		}
 	}
 }

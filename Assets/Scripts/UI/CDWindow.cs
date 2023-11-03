@@ -8,5 +8,6 @@ public class CDWindow : MonoBehaviour
 	public void InvokeEvent()
 	{
 		CDWindowEnd?.Invoke();
+		gameObject.SetActive(false);
 	}
 }
