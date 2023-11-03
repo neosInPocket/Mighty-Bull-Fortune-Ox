@@ -10,6 +10,7 @@ public class PlatformSpawner : MonoBehaviour
 	[SerializeField] private Transform lastPlatform;
 	[SerializeField] private Transform firstPlatform;
 	[SerializeField] private float spawnDelta;
+	[SerializeField] private Transform coinContainer;
 	private float currentYSpawnPosition;
 	private float currentYSpawnTrigger;
 	private Vector2 screenSize;
@@ -48,11 +49,16 @@ public class PlatformSpawner : MonoBehaviour
 		currentYSpawnTrigger += spawnDelta;
 	}
 	
-	public void ClearPlatformsContainer()
+	public void ClearContainers()
 	{
 		foreach (Transform child in transform)
 		{
 			Destroy(child.gameObject);
+		}
+		
+		foreach (Transform coin in coinContainer)
+		{
+			Destroy(coin.gameObject);
 		}
 	}
 }

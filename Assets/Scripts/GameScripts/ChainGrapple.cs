@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using UnityEngine;
 
 public class ChainGrapple : MonoBehaviour
@@ -60,8 +59,6 @@ public class ChainGrapple : MonoBehaviour
 
 	void DrawRope()
 	{
-		
-		Debug.Log(grapplingGun.grapplePoint.x);
 		if (!strightLine)
 		{
 			if (m_lineRenderer.GetPosition(percision - 1).x == grapplingGun.grapplePoint.x)

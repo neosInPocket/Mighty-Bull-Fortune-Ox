@@ -4,12 +4,63 @@ using UnityEngine;
 
 public static class SaveSystem
 {
-	public static int hookSpeed => PlayerPrefs.GetInt("hookSpeed", 0);
-	public static int hookDistance => PlayerPrefs.GetInt("hookDistance", 0);
-	
-	public static void SaveChanges()
+	public static int hookDistance
 	{
-		PlayerPrefs.SetInt("hookSpeed", hookSpeed);
-		PlayerPrefs.SetInt("hookDistance", hookDistance);
+		get
+		{
+			 return PlayerPrefs.GetInt("hookDistance", 0);
+		}
+		
+		set
+		{
+			m_hookDistance = value;
+			PlayerPrefs.SetInt("hookDistance", m_hookDistance);
+		}
 	}
+	private static int m_hookDistance;
+	
+	public static int maxLifesAmount
+	{
+		get
+		{
+			 return PlayerPrefs.GetInt("maxLifesAmount", 0);
+		}
+		
+		set
+		{
+			m_maxLifesAmount = value;
+			PlayerPrefs.SetInt("maxLifesAmount", m_maxLifesAmount);
+		}
+	}
+	private static int m_maxLifesAmount;
+	
+	public static bool tutorial 
+	{
+		get
+		{
+			var tutorInt = PlayerPrefs.GetInt("tutor", 1);
+			if (tutorInt == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
+		set
+		{
+			if (value)
+			{
+				m_tutorial = 1;
+			}
+			else
+			{
+				m_tutorial = 0;
+			}
+			PlayerPrefs.SetInt("tutorial", m_tutorial);
+		}
+	}
+	private static int m_tutorial;
 }
