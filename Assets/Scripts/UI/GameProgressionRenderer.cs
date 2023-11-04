@@ -33,6 +33,12 @@ public class GameProgressionRenderer : MonoBehaviour
 		StartCoroutine(SetSmoothProgression(fillValue));
 	}
 	
+	public void ClearProgression()
+	{
+		progressionPlaceholder.fillAmount = 0;
+		progressionFill.fillAmount = 0;
+	}
+	
 	private IEnumerator SetSmoothProgression(float fillValue)
 	{
 		while (progressionFill.fillAmount < fillValue)

@@ -98,8 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b66384c6ce65404480423c82dc98089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathPop: {fileID: 1128922939517096, guid: 13bf80939900a2a4c8d5a6ac51f555d5, type: 3}
   spriteRenderer: {fileID: 9014277975970057325}
   coinPoints: 4
+  isDead: 0
 --- !u!58 &4473259633496986021
 CircleCollider2D:
   m_ObjectHideFlags: 0

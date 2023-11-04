@@ -14,6 +14,7 @@ public class PlatformSpawner : MonoBehaviour
 	private float currentYSpawnPosition;
 	private float currentYSpawnTrigger;
 	private Vector2 screenSize;
+	public bool isLastSpikes;
 	
 	private void Start()
 	{
@@ -44,7 +45,7 @@ public class PlatformSpawner : MonoBehaviour
 			transform
 			);
 			
-		platform.SetRandomPositionNSize(platformXSizeBounds, screenSize, currentYSpawnPosition, transform);
+		platform.SetRandomPositionNSize(platformXSizeBounds, screenSize, currentYSpawnPosition, this);
 		currentYSpawnPosition = platform.transform.position.y + spawnDelta;
 		currentYSpawnTrigger += spawnDelta;
 	}

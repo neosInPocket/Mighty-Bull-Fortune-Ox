@@ -77,4 +77,19 @@ public static class SaveSystem
 		}
 	}
 	private static int m_level;
+	
+	public static int coins
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("coins", 100);
+		}
+		
+		set
+		{
+			m_coins = value;
+			PlayerPrefs.SetInt("coins", m_coins);
+		}
+	}
+	private static int m_coins;
 }

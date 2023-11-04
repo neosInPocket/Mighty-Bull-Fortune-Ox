@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour
 		rigidbody2Dd.velocity = Vector2.zero;
 		rigidbody2Dd.angularVelocity = 0;
 		isDead = false;
+		spriteRenderer.color = new Color(1, 1, 1, 1);
+		chainGunspriteRenderer.color = new Color(1, 1, 1, 1);
+		transform.rotation = Quaternion.Euler(0, 0, 90);
+		scanSystem.gameObject.SetActive(true);
 	}
 	
 	private void OnTriggerEnter2D(Collider2D collider)
@@ -48,6 +52,9 @@ public class PlayerController : MonoBehaviour
 		
 		if (collider.gameObject.TryGetComponent<CoinController>(out CoinController coin))
 		{
+			if (coin.isDead) return;
+			coin.isDead	= true;
+			coin.PopCoin();
 			CoinCollectedEvent?.Invoke(coin.CoinPoints);
 		}
 		
@@ -80,9 +87,12 @@ public class PlayerController : MonoBehaviour
 			if (currentSavePlatform == null)
 			{
 				transform.position = new Vector2(0, -4.16f);
+				rigidbody2Dd.velocity = Vector2.zero;
+				rigidbody2Dd.angularVelocity = 0;
 			}
 			else
 			{
+				chainGun.isLaunched = false;
 				transform.position = currentSavePlatform.CoinSpawnPosition;
 			}
 			StartCoroutine(SpriteRendererFade());
@@ -115,6 +125,9 @@ public class PlayerController : MonoBehaviour
 	
 	private IEnumerator SpriteDeathEffect()
 	{
+		scanSystem.gameObject.SetActive(false);
+		spriteRenderer.color = new Color(1, 1, 1, 0);
+		chainGunspriteRenderer.color = new Color(1, 1, 1, 0);
 		var deathGO = Instantiate(deathEffect, transform.position, Quaternion.identity, transform);
 		yield return new WaitForSeconds(1);
 		Destroy(deathGO.gameObject);

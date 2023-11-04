@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameProcess : MonoBehaviour
 {
@@ -44,7 +45,7 @@ public class GameProcess : MonoBehaviour
 		maxProgression = GetMaxProgressionFunction();
 		progressionRenderer.SetLevelText(currentLevel);
 		progressionRenderer.RefreshHearts(player.Lifes);
-		progressionRenderer.RefreshProgression(0);
+		progressionRenderer.ClearProgression();
 		
 		if (SaveSystem.tutorial)
 		{
@@ -81,7 +82,15 @@ public class GameProcess : MonoBehaviour
 			sessionResult.RefreshResultInfo(false, currentLevelMaxCoins);
 			UnsubscribeFromPlayer();
 			player.DisableHook();
+			SaveSystem.level++;
+			SaveSystem.coins += currentLevelMaxCoins;
 		}
+		else
+		{
+			currentProgression += value;
+		}
+		
+		
 		
 		progressionRenderer.RefreshProgression((float)currentProgression / (float)maxProgression);
 	}
@@ -108,5 +117,10 @@ public class GameProcess : MonoBehaviour
 	private void OnDestroy()
 	{
 		UnsubscribeFromPlayer();
+	}
+	
+	public void BackToMenu()
+	{
+		SceneManager.LoadScene("Menu");
 	}
 }

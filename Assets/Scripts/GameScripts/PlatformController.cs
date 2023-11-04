@@ -14,6 +14,8 @@ public class PlatformController : MonoBehaviour
 	[SerializeField] private CoinController rareCoin; 
 	[SerializeField] private CoinController simpleCoin; 
 	[SerializeField] private float coinSpawnChance;
+	[SerializeField] private PlatformSpawner platformSpawner;
+	
 	public SpriteRenderer SpriteRenderer => spriteRenderer;
 	private bool isSpikesSpawned;
 	private Vector2 coinSpawnPosition;
@@ -24,11 +26,11 @@ public class PlatformController : MonoBehaviour
 	{
 		if (isPreSpawned)
 		{
-			SpawnSpikes();
+			SpawnSpikes(platformSpawner);
 		}
 	}
 	
-	public void SetRandomPositionNSize(Vector2 platformXSizeBounds, Vector2 screenSize, float currentYSpawnPosition, Transform coinContainer)
+	public void SetRandomPositionNSize(Vector2 platformXSizeBounds, Vector2 screenSize, float currentYSpawnPosition, PlatformSpawner coinContainer)
 	{
 		float platformAspect = SpriteRenderer.size.x / SpriteRenderer.size.y;
 		float platformXSize = Random.Range(platformXSizeBounds.x, platformXSizeBounds.y);
@@ -51,15 +53,23 @@ public class PlatformController : MonoBehaviour
 			transform.position = new Vector2(randomX2Position, currentYSpawnPosition);
 		}
 		
-		SpawnSpikes();
-		SpawnCoin(coinContainer);
+		if (!coinContainer.isLastSpikes)
+		{
+			SpawnSpikes(coinContainer);
+			SpawnCoin(coinContainer.transform);
+			return;
+		}
+		
+		SpawnCoin(coinContainer.transform);
+		coinContainer.isLastSpikes = false;
 	}
 	
-	private void SpawnSpikes()
+	private void SpawnSpikes(PlatformSpawner platformSpawner)
 	{
 		var rnd = Random.Range(0, 2);
 		if (rnd == 0)
 		{
+			platformSpawner.isLastSpikes = true;
 			isSpikesSpawned = true;
 			foreach (var spike in spikes)
 			{

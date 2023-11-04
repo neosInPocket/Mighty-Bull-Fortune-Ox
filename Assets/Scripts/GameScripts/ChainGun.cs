@@ -82,7 +82,14 @@ public class ChainGun : MonoBehaviour
 		Touch.onFingerDown -= SetEnabled;
 		Touch.onFingerMove -= SetFingerPosition;
 		Touch.onFingerUp -= SetDisabled;
+		Unhook();
 	}
+	
+	public void Unhook()
+	{
+		isLaunched = false;
+	}
+	
 	private void SetEnabled(Finger finger)
 	{
 		isLaunched = true;
