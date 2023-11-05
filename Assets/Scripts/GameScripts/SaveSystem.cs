@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public static class SaveSystem
 {
@@ -100,5 +101,6 @@ public static class SaveSystem
 		hookDistance = 0;
 		level = 1;
 		tutorial = true;
+		VolumeController.volume = 1f;
 	}
 }

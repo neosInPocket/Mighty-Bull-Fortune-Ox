@@ -7,7 +7,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	[SerializeField] private SpriteRenderer spriteRenderer;
-	[SerializeField] private SpriteRenderer chainGunspriteRenderer;
 	[SerializeField] private Rigidbody2D rigidbody2Dd;
 	[SerializeField] private PlayerUpgradesSO playerUpgrades;
 	[SerializeField] private ChainGun chainGun; 
@@ -34,14 +33,12 @@ public class PlayerController : MonoBehaviour
 	
 	public void Initialize()
 	{
-		//lifes = SaveSystem.maxLifesAmount;
-		lifes = 2;
+		lifes = SaveSystem.maxLifesAmount;
 		transform.position = new Vector2(0, -4.16f);
 		rigidbody2Dd.velocity = Vector2.zero;
 		rigidbody2Dd.angularVelocity = 0;
 		isDead = false;
 		spriteRenderer.color = new Color(1, 1, 1, 1);
-		chainGunspriteRenderer.color = new Color(1, 1, 1, 1);
 		transform.rotation = Quaternion.Euler(0, 0, 90);
 		scanSystem.gameObject.SetActive(true);
 	}
@@ -113,10 +110,8 @@ public class PlayerController : MonoBehaviour
 		for (int i = 0; i < 11; i++)
 		{
 			spriteRenderer.color = fadeColor;
-			chainGunspriteRenderer.color = fadeColor;
 			yield return new WaitForSeconds(0.2f);
 			spriteRenderer.color = normalColor;
-			chainGunspriteRenderer.color = normalColor;
 			yield return new WaitForSeconds(0.2f);
 		}
 		
@@ -127,7 +122,6 @@ public class PlayerController : MonoBehaviour
 	{
 		scanSystem.gameObject.SetActive(false);
 		spriteRenderer.color = new Color(1, 1, 1, 0);
-		chainGunspriteRenderer.color = new Color(1, 1, 1, 0);
 		var deathGO = Instantiate(deathEffect, transform.position, Quaternion.identity, transform);
 		yield return new WaitForSeconds(1);
 		Destroy(deathGO.gameObject);

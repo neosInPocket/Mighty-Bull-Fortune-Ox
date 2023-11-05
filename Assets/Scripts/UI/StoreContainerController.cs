@@ -15,7 +15,7 @@ public class StoreContainerController : MonoBehaviour
 	
 	private void Start()
 	{
-		SaveSystem.Reset();
+		//SaveSystem.Reset();
 	}
 	
 	public void UpdateStore()

@@ -152,16 +152,16 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0.088621445, y: 0, z: 0.088621445, w: 0}
+    border: {x: 0.324, y: 0, z: 0.324, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.20131291}
+    oldSize: {x: 3.528, y: 0.736}
     newSize: {x: 3.46, y: 0.82}
     adaptiveTilingThreshold: 1
     drawMode: 1
     adaptiveTiling: 0
-  m_AutoTiling: 1
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.46, y: 0.82}
   m_EdgeRadius: 0
 --- !u!114 &7380499902191393832
 MonoBehaviour:
@@ -187,6 +187,7 @@ MonoBehaviour:
   simpleCoin: {fileID: 4545798799788424535, guid: bcbc46004b5b1fa41bfd7f9829d5c3fd, type: 3}
   coinSpawnChance: 0.7
   platformSpawner: {fileID: 0}
+  boxCollider2D: {fileID: 5921307612425494764}
 --- !u!1 &3113058182477180498
 GameObject:
   m_ObjectHideFlags: 0

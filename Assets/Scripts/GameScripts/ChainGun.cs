@@ -199,15 +199,15 @@ public class ChainGun : MonoBehaviour
 		Vector2 distanceVector = mainCamera.ScreenToWorldPoint(lastFingerPosition) - gunPivot.position;
 		if (Physics2D.Raycast(firePoint.position, distanceVector.normalized))
 		{
-			RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);
-			if (_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll)
+			RaycastHit2D[] _hit = Physics2D.RaycastAll(firePoint.position, distanceVector.normalized);
+			if (_hit[1].transform.gameObject.layer == grappableLayerNumber || grappleToAll)
 			{
-				var distance = Vector2.Distance(_hit.point, firePoint.position);
+				var distance = Vector2.Distance(_hit[1].point, firePoint.position);
 				if (distance <= minDistance) return;
 				
 				if (distance <= maxDistnace || !hasMaxDistance)
 				{
-					grapplePoint = _hit.point;
+					grapplePoint = _hit[1].point;
 					grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
 					grappleRope.enabled = true;
 				}

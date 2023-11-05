@@ -15,6 +15,7 @@ public class PlatformController : MonoBehaviour
 	[SerializeField] private CoinController simpleCoin; 
 	[SerializeField] private float coinSpawnChance;
 	[SerializeField] private PlatformSpawner platformSpawner;
+	[SerializeField] private BoxCollider2D boxCollider2D;
 	
 	public SpriteRenderer SpriteRenderer => spriteRenderer;
 	private bool isSpikesSpawned;
@@ -24,6 +25,8 @@ public class PlatformController : MonoBehaviour
 	
 	private void Start()
 	{
+		boxCollider2D.size = spriteRenderer.size;
+		
 		if (isPreSpawned)
 		{
 			SpawnSpikes(platformSpawner);
