@@ -92,4 +92,13 @@ public static class SaveSystem
 		}
 	}
 	private static int m_coins;
+	
+	public static void Reset()
+	{
+		coins = 100;
+		maxLifesAmount = 1;
+		hookDistance = 0;
+		level = 1;
+		tutorial = true;
+	}
 }

@@ -83,7 +83,6 @@ public class MenuContainerSlider : MonoBehaviour
 				var newPointerX = pointer.transform.localPosition.x - currentPointerVelocity * (currentPointerDistance + 13.333333f) / 414f;
 				pointer.transform.localPosition = new Vector2(newPointerX, pointer.transform.localPosition.y);
 				yield return new WaitForFixedUpdate();
-				yield return new WaitForFixedUpdate();
 			}
 		}
 		

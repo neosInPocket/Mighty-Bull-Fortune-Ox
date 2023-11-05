@@ -80,13 +80,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a3a9828bdf03e6b4f966a220f563f463, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 2
+  m_DrawMode: 1
   m_Size: {x: 3.46, y: 0.82}
-  m_AdaptiveModeThreshold: 0.5
+  m_AdaptiveModeThreshold: 1
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
@@ -152,12 +152,12 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
+    border: {x: 0.088621445, y: 0, z: 0.088621445, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 0.20131291}
     newSize: {x: 3.46, y: 0.82}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 2
+    adaptiveTilingThreshold: 1
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 1
   serializedVersion: 2
@@ -176,7 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPreSpawned: 0
-  isInitial: 0
   spriteRenderer: {fileID: 4666207727868554610}
   spikes:
   - {fileID: 7754852050241173034}
@@ -187,8 +186,7 @@ MonoBehaviour:
   rareCoin: {fileID: 2706473659627115527, guid: 1e3c83b4018e26b49a6c276a78ed5af1, type: 3}
   simpleCoin: {fileID: 4545798799788424535, guid: bcbc46004b5b1fa41bfd7f9829d5c3fd, type: 3}
   coinSpawnChance: 0.7
-  coinContainer: {fileID: 0}
-  coinSpawnTransform: {fileID: 0}
+  platformSpawner: {fileID: 0}
 --- !u!1 &3113058182477180498
 GameObject:
   m_ObjectHideFlags: 0
