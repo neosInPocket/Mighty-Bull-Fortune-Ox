@@ -17,7 +17,7 @@ public class TutorScreen : MonoBehaviour
 		EnhancedTouchSupport.Enable();
 		TouchSimulation.Enable();
 		Touch.onFingerDown += Image1;
-		characterText.text = "Welcome to Hooked!";
+		characterText.text = "Welcome to Mighty Bull: Fortune Ox!";
 	}
 	
 	private void Image1(Finger finger)

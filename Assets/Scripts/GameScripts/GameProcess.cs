@@ -97,7 +97,7 @@ public class GameProcess : MonoBehaviour
 	
 	private void OnPlayerDamageTaken(int currentLifes)
 	{
-		if (currentLifes == 0)
+		if (currentLifes <= 0)
 		{
 			sessionResult.gameObject.SetActive(true);
 			sessionResult.RefreshResultInfo(true);
